@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Admin-Services</title>
+    <link rel="stylesheet" href="Style_inscription.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="Media/ADMIN-SERVICES.svg" alt="Logo Admin-Services">
+            </div>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#">Demander un document</a></li>
+                <li><a href="Connexion.html">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form-section">
+        <h2>Inscription</h2>
+        <form action="register.php" method="POST">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="dob">Date de naissance :</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="phone">Numéro de téléphone :</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="email">Adresse mail :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="cni">Numéro CNI ou Passeport :</label>
+            <input type="text" id="cni" name="cni" required>
+
+            <button type="submit">S'inscrire</button>
+        </form>
+        <p>Vous avez déjà un compte ? <a href="connexion.html">Connectez-vous</a></p>
+    </section>
+
+    <footer>
+        <p>Contact : +221 77 XX9 9X 00</p>
+        <p>Email : admin-service@gmail.com</p>
+        <p>&copy; 2024 Admin-Services. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

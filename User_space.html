@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Document - Admin-Services</title>
+    <link rel="stylesheet" href="Style_user.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="Media/ADMIN-SERVICES.svg" alt="Logo Admin-Services">
+            </div>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#">Demander un document</a></li>
+                <li><a href="index.html">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form-section">
+        <h2>Ajouter un Document</h2>
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <label for="document-type">Sélectionner un type de document :</label>
+            <select id="document-type" name="document-type">
+                <option value="cni">Carte d'identité nationale</option>
+                <option value="passport">Passeport</option>
+                <option value="permis">Permis de conduire</option>
+                <option value="livret">Livret de famille</option>
+                <option value="naissance">Acte de naissance</option>
+                <option value="rib">RIB</option>
+                <option value="diplome">Diplôme</option>
+            </select>
+
+            <label for="document">Téléverser votre document :</label>
+            <input type="file" id="document" name="document" accept="application/pdf, image/*" required>
+
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>Contact : +221 77 XX9 9X 00</p>
+        <p>Email : admin-service@gmail.com</p>
+        <p>&copy; 2024 Admin-Services. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
