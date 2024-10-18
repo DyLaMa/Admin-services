@@ -109,3 +109,13 @@ footer p {
     text-decoration: none;
 }
 
+.checkbox-container {
+    display: flex;
+    align-items: center; /* Aligne verticalement la case à cocher et le texte */
+    margin-top: 10px; /* Ajoute un espace entre le champ mot de passe et la case à cocher */
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px; /* Espace entre la case à cocher et le texte */
+}
+
