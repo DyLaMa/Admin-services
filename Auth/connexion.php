@@ -22,10 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Mot de passe correct, démarrer une session utilisateur
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_email'] = $user['email'];
-            echo "Connexion réussie !";
+            $_SESSION['role'] = $user['role']; // Stocker le rôle dans la session
 
-            // Rediriger vers la page user_space.html
-            header("Location: ../User_space.php");
+            // Vérifier le rôle et rediriger en fonction
+            if ($user['role'] === 'admin') {
+                header("Location: ../admin_documents.php"); // Rediriger vers l'espace admin
+            } else {
+                header("Location: ../User_space.php"); // Rediriger vers l'espace utilisateur
+            }
             exit(); // Arrêter l'exécution du script après la redirection
         } else {
             // Mot de passe incorrect, stocker le message d'erreur dans la session

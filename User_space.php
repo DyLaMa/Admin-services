@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="#">Demander un document</a></li>
-                <li><a href="../Admin-services/index.html">Déconnexion</a></li>
+                <li><a href="../Admin-services/Auth/logout.php">Déconnexion</a></li>
             </ul>
         </nav>
     </header>
@@ -66,21 +66,33 @@
             $query = "SELECT * FROM documents WHERE user_id = '$user_id'";
             $result = $conn->query($query);
 
+            // Variable pour suivre si un document valide est trouvé
+            $has_documents = false;
+
             if ($result->num_rows > 0) {
                 echo "<ul>";
                 while ($row = $result->fetch_assoc()) {
-                    // Le chemin complet pour le lien est directement issu de la base de données
-                    $file_path = htmlspecialchars($row['file_path']);
+                    // Chemin du fichier sur le serveur
+                    $local_file_path = "../" . htmlspecialchars($row['file_path']);
 
-                    // Affichage du lien avec le chemin complet
-                    echo "<li>";
-                    echo "<strong>" . htmlspecialchars($row['document_type']) . "</strong>: ";
-                    echo "<a href='" . $file_path . "' target='_blank'>" . htmlspecialchars($row['file_name']) . "</a>";
-                    echo "</li>";
+                    // Vérifier si le fichier existe sur le serveur
+                    if (file_exists($local_file_path)) {
+                        $has_documents = true; // Un document valide est trouvé
+
+                        // Afficher le lien et l'état du document
+                        echo "<li>";
+                        echo "<strong>" . htmlspecialchars($row['document_type']) . "</strong>: ";
+                        echo "<a href='" . htmlspecialchars($row['file_path']) . "' target='_blank'>" . htmlspecialchars($row['file_name']) . "</a>";
+                        echo " - État : <span>" . htmlspecialchars($row['etat_document']) . "</span>"; // Afficher l'état du document
+                        echo "</li>";
+                    }
                 }
                 echo "</ul>";
-            } else {
-                echo "<p>Aucun document trouvé.</p>";
+            }
+
+            // Si aucun document valide n'a été trouvé, afficher le message
+            if (!$has_documents) {
+                echo "<p>Vous n'avez pas de document disponible sur notre plateforme pour le moment.</p>";
             }
         } else {
             echo "<p>Erreur : utilisateur non connecté.</p>";
@@ -88,6 +100,8 @@
 
         $conn->close();
         ?>
+
+
 
 
         </div>
