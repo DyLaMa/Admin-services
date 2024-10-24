@@ -9,4 +9,4 @@ Ce fichier contient des instructions sur :
 - Les cas d'utilisation pour un utilisateur standard et un administrateur.
 
 
-Pour toute question ou assistance supplémentaire, n'hésitez pas à nous contacter (mananamohamed11@gmail.com)
+Pour toute question ou assistance supplémentaire, n'hésitez pas à nous contacter.
