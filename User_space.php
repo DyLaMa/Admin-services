@@ -49,7 +49,7 @@
         <div class="document-list">
         <?php
         session_start();
-        include '../Admin-services/Auth/db.php'; // Assurez-vous que le chemin de db.php est correct
+        include '../Admin-services/Auth/db.php';
 
         // Affichage de l'alerte de succès
         if (isset($_SESSION['success_message'])) {

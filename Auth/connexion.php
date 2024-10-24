@@ -6,11 +6,11 @@ include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 1. Récupérer les données du formulaire de connexion
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $email_or_id = mysqli_real_escape_string($conn, $_POST['email']); // Champ 'email' peut être ID ou email
     $password = mysqli_real_escape_string($conn, $_POST['password']);                 
 
-    // 2. Vérifier si l'utilisateur existe dans la base de données
-    $check_user_query = "SELECT * FROM users WHERE email='$email'";
+    // 2. Vérifier si l'utilisateur existe dans la base de données par email OU ID
+    $check_user_query = "SELECT * FROM users WHERE email='$email_or_id' OR id='$email_or_id'";
     $result = $conn->query($check_user_query);
 
     if ($result->num_rows > 0) {
@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     } else {
-        // Aucun compte trouvé avec cet email, stocker le message d'erreur dans la session
-        $_SESSION['error'] = "Aucun compte trouvé avec cet email.";
+        // Aucun compte trouvé avec cet email ou cet ID, stocker le message d'erreur dans la session
+        $_SESSION['error'] = "Aucun compte trouvé avec cet email ou cet ID.";
         header("Location: ../Connexion.html"); // Rediriger vers la page de connexion
         exit();
     }

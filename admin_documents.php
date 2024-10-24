@@ -61,9 +61,21 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                 <th>État</th>
                 <th>Changer l'état</th>
             </tr>
-            <?php while ($row = $documents->fetch_assoc()) { ?>
+            <?php 
+            // Parcourir les documents stockés
+            while ($row = $documents->fetch_assoc()) { 
+                // Chemin local vers le fichier stocké
+                $local_file_path = "../" . htmlspecialchars($row['file_path']);
+
+                // Vérifier si le fichier existe
+                if (file_exists($local_file_path)) { 
+            ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($row['file_name']); ?></td>
+                    <td>
+                        <a href="<?php echo htmlspecialchars($row['file_path']); ?>" target="_blank">
+                            <?php echo htmlspecialchars($row['file_name']); ?>
+                        </a>
+                    </td>
                     <td><?php echo htmlspecialchars($row['document_type']); ?></td>
                     <td><?php echo htmlspecialchars($row['etat_document']); ?></td>
                     <td>
@@ -78,7 +90,10 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
                         </form>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php 
+                } // Fin de la vérification du fichier
+            } // Fin de la boucle while
+            ?>
         </table>
 
         <h2>Utilisateurs</h2>
